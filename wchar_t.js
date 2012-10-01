@@ -2,7 +2,6 @@
  * Module dependencies.
  */
 
-var ffi = require('ffi')
 var ref = require('ref')
 var Iconv = require('iconv').Iconv
 
@@ -24,7 +23,7 @@ if ('win32' == process.platform) {
 // Create a "wchar_t *" type. We use the "CString" type as a base since it's pretty
 // close to what we actually want. We just have to define custom "get" and "set"
 // functions and then we can use this type in FFI functions.
-var wchar_t = Object.create(ffi.types.CString)
+var wchar_t = Object.create(ref.types.CString)
 wchar_t.get = function get (buf, offset) {
   var _buf = buf.readPointer(offset)
   if (_buf.isNull()) {
