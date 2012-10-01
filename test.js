@@ -1,4 +1,5 @@
 var ffi = require('ffi')
+var ref = require('ref')
 var assert = require('assert')
 var wchar_t = require('./wchar_t')
 
