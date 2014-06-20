@@ -28,6 +28,7 @@ var setter = new Iconv('UTF-8', 'UTF-' + (8 * size) + ref.endianness);
  * The `wchar_t` type.
  */
 
+exports = module.exports = Object.create(ref.types['int' + (8 * size)]);
 exports.name = 'wchar_t';
 exports.size = size;
 exports.indirection = 1;
@@ -39,7 +40,7 @@ exports.get = function get (buf, offset) {
   return getter.convert(buf).toString('utf8');
 };
 exports.set = function set (buf, offset, val) {
-  var _buf = val;
+  var _buf = val; // assume val is a Buffer by default
   if (typeof val === 'string') {
     _buf = setter.convert(val[0]);
   } else if (typeof val === 'number') {
@@ -72,4 +73,4 @@ exports.string.set = function set (buf, offset, val) {
     _buf = setter.convert(val + '\0');
   }
   return buf.writePointer(_buf, offset);
-}:
+};
