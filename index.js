@@ -66,8 +66,8 @@ exports.string.get = function get (buf, offset) {
   if (_buf.isNull()) {
     return null;
   }
-  var stringBuf = _buf.reinterpretUntilZeros(size);
-  return getter.convert(stringBuf).toString('utf8');
+  var stringBuf = _buf.reinterpretUntilZeros(exports.size);
+  return exports.toString(stringBuf);
 };
 exports.string.set = function set (buf, offset, val) {
   var _buf = val; // val is a Buffer? it better be \0 terminated...
@@ -75,4 +75,15 @@ exports.string.set = function set (buf, offset, val) {
     _buf = setter.convert(val + '\0');
   }
   return buf.writePointer(_buf, offset);
+};
+
+/**
+ * Turns a `wchar_t *` Buffer instance into a JavaScript String instance.
+ *
+ * @param {Buffer} buffer - buffer instance to serialize
+ * @public
+ */
+
+exports.toString = function toString (buffer) {
+  return getter.convert(buffer).toString('utf8');
 };
