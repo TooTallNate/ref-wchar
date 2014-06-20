@@ -36,7 +36,7 @@ EXPORT whcar_t w = L'W';
 
 EXPORT wchar_t s[] = L"hello world";
 
-EXPORT wchar_t **str = reinterpret_cast<wchar_t **>(&s);
+EXPORT wchar_t **str = (wchar_t **)(&s);
 ```
 
 ``` js
