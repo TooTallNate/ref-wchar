@@ -5,7 +5,7 @@ ref-wchar
 [![Build Status](https://ci.appveyor.com/api/projects/status/xmne006y9jma3pm0)](https://ci.appveyor.com/project/TooTallNate/ref-wchar)
 
 This module offers a ["wide
-strings"](http://en.wikipedia.org/wiki/Wide_character#C.2FC.2B.2B) (`whar_t *`)
+strings"](http://en.wikipedia.org/wiki/Wide_character#C.2FC.2B.2B) (`wchar_t *`)
 implementation on top of Node.js Buffers using the ref "type" interface.
 
 
