@@ -34,7 +34,9 @@ string:
 
 EXPORT whcar_t w = L'W';
 
-EXPORT wchar_t str[] = L"hello world";
+EXPORT wchar_t s[] = L"hello world";
+
+EXPORT wchar_t **str = reinterpret_cast<wchar_t **>(&s);
 ```
 
 ``` js
@@ -50,8 +52,13 @@ var w = lib.get('w', wchar_t.size);
 ref.get(w, wchar_t);
 // "W"
 
-// get the "str" symbol as a wide string
-var str = lib.get('str');
+// get the "s" symbol as a wide string
+var s = ref.reinterpretUntilZeros(lib.get('s'), wchar_t.size);
+wchar_t.toString(s);
+// "hello world"
+
+// get the "str" pointer symbol as a wide string
+var str = lib.get('str', wchar_string.size);
 ref.get(str, wchar_string);
 // "hello world"
 ```
