@@ -4,7 +4,6 @@ var ref = require('ref');
 var wchar_t = require('../');
 var wchar_string = wchar_t.string;
 var bindings = require('bindings')({ module_root: __dirname, bindings: 'test' })
-console.log(bindings);
 
 describe('wchar_t', function () {
 
