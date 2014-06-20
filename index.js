@@ -45,6 +45,8 @@ exports.set = function set (buf, offset, val) {
     _buf = setter.convert(val[0]);
   } else if (typeof val === 'number') {
     _buf = setter.convert(String.fromCharCode(val));
+  } else if (!_buf) {
+    throw new TypeError('muss pass a String, Number, or Buffer for `wchar_t`');
   }
   return _buf.copy(buf, offset, 0, size);
 };
