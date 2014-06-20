@@ -1,0 +1,38 @@
+{
+  "name": "ref-wchar",
+  "version": "0.0.0",
+  "description": "A ref \"type\" implementation of `wchar_t *` (a.k.a. wide string) backed by \"node-iconv\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "node-gyp rebuild --directory test && mocha -gc --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:TooTallNate/ref-wchar.git"
+  },
+  "keywords": [
+    "ref",
+    "type",
+    "wchar",
+    "wchar_t",
+    "wide",
+    "string",
+    "c",
+    "c++",
+    "ffi",
+    "abi"
+  ],
+  "author": "Nathan Rajlich <nathan@tootallnate.net> (http://n8.io/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TooTallNate/ref-wchar/issues"
+  },
+  "homepage": "https://github.com/TooTallNate/ref-wchar",
+  "dependencies": {
+    "iconv": "~2.1.4",
+    "ref": "~0.3.1"
+  },
+  "devDependencies": {
+    "ffi": "~1.2.6"
+  }
+}
