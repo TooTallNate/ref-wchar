@@ -6,8 +6,13 @@
 var ref = require('ref');
 var Iconv = require('iconv').Iconv;
 
-// On Windows they're UTF-16 (2-bytes),
-// but on Unix platform they're UTF-32 (4-bytes).
+/**
+ * On Windows they're UTF-16 (2-bytes),
+ * but on Unix platform they're UTF-32 (4-bytes).
+ *
+ * TODO: add a way to optionally enable `-fshort-wchar` for Unix (gcc option).
+ */
+
 var size;
 if ('win32' == process.platform) {
   size = 2;
@@ -18,38 +23,53 @@ if ('win32' == process.platform) {
 var getter = new Iconv('UTF-' + (8 * size) + ref.endianness, 'UTF-8');
 var setter = new Iconv('UTF-8', 'UTF-' + (8 * size) + ref.endianness);
 
-// Create a "wchar_t *" type. We use the "CString" type as a base since it's pretty
-// close to what we actually want. We just have to define custom "get" and "set"
-// functions and then we can use this type in FFI functions.
-exports = module.exports = Object.create(ref.types.CString);
-exports.get = get;
-exports.set = set;
 
 /**
- * `wchar *` string getter.
- *
- * @public
+ * The `wchar_t` type.
  */
 
-function get (buf, offset) {
+exports.name = 'wchar_t';
+exports.size = size;
+exports.indirection = 1;
+exports.get = function get (buf, offset) {
+  if (offset > 0 || buf.length !== exports.size) {
+    offset = offset | 0;
+    buf = buf.slice(offset, offset + size);
+  }
+  return getter.convert(buf).toString('utf8');
+};
+exports.set = function set (buf, offset, val) {
+  var _buf = val;
+  if (typeof val === 'string') {
+    _buf = setter.convert(val[0]);
+  } else if (typeof val === 'number') {
+    _buf = setter.convert(String.fromCharCode(val));
+  }
+  return _buf.copy(buf, offset, 0, size);
+};
+
+
+/**
+ * The "wchar_t *" type.
+ *
+ * We use the "CString" type as a base since it's pretty close to what we
+ * actually want. We just have to define custom "get" and "set" functions.
+ */
+
+exports.string = Object.create(ref.types.CString);
+exports.string.name = 'WCString';
+exports.string.get = function get (buf, offset) {
   var _buf = buf.readPointer(offset);
   if (_buf.isNull()) {
     return null;
   }
   var stringBuf = _buf.reinterpretUntilZeros(size);
   return getter.convert(stringBuf).toString('utf8');
-}
-
-/**
- * `wchar *` string setter.
- *
- * @public
- */
-
-function set (buf, offset, val) {
+};
+exports.string.set = function set (buf, offset, val) {
   var _buf = val; // val is a Buffer? it better be \0 terminated...
   if ('string' == typeof val) {
     _buf = setter.convert(val + '\0');
   }
   return buf.writePointer(_buf, offset);
-}
+}:
