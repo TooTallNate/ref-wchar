@@ -37,7 +37,7 @@ exports.get = function get (buf, offset) {
     offset = offset | 0;
     buf = buf.slice(offset, offset + size);
   }
-  return getter.convert(buf).toString('utf8');
+  return exports.toString(buf);
 };
 exports.set = function set (buf, offset, val) {
   var _buf = val; // assume val is a Buffer by default
