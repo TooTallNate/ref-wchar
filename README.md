@@ -52,7 +52,7 @@ ref.get(w, wchar_t);
 
 // get the "str" symbol as a wide string
 var str = lib.get('str');
-ref.get(w, wchar_string);
+ref.get(str, wchar_string);
 // "hello world"
 ```
 
