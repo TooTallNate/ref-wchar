@@ -2,7 +2,7 @@ ref-wchar
 ==========
 ### A ref "type" implementation of `wchar_t *` (a.k.a. wide string) backed by "node-iconv"
 [![Build Status](https://secure.travis-ci.org/TooTallNate/ref-wchar.svg)](https://travis-ci.org/TooTallNate/ref-wchar)
-[![Build Status](https://ci.appveyor.com/api/projects/status/xmne006y9jma3pm0)](https://ci.appveyor.com/project/TooTallNate/ref-wchar)
+[![Build Status](https://ci.appveyor.com/api/projects/status/xmne006y9jma3pm0?svg=true)](https://ci.appveyor.com/project/TooTallNate/ref-wchar)
 
 This module offers a ["wide
 strings"](http://en.wikipedia.org/wiki/Wide_character#C.2FC.2B.2B) (`wchar_t *`)
