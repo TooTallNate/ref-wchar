@@ -1,4 +1,14 @@
 
+1.0.0 / 2015-03-24
+==================
+
+  * add .travis.yml and appveyor.yml files
+  * index: use `toString()` in `wchar_t.get()`
+  * README: add travis and appveyor badges
+  * README: use C-style cast since we say C library
+  * README: better example
+  * package: update "ref" to v1.0.1
+
 0.0.1 / 2014-06-19
 ==================
 
