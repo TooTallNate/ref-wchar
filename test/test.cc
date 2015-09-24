@@ -11,11 +11,11 @@ static wchar_t s[] = L"hello world";
 static wchar_t **str = reinterpret_cast<wchar_t **>(&s);
 
 void Initialize(v8::Handle<v8::Object> target) {
-  NanScope();
+  Nan::HandleScope scope;
 
-  target->Set(NanNew<v8::String>("w"), NanBufferUse(reinterpret_cast<char *>(&w), sizeof(w)));
-  target->Set(NanNew<v8::String>("s"), NanBufferUse(reinterpret_cast<char *>(&s), sizeof(s)));
-  target->Set(NanNew<v8::String>("str"), NanBufferUse(reinterpret_cast<char *>(&str), sizeof(str)));
+  Nan::Set(target, Nan::New<v8::String>("w").ToLocalChecked(), Nan::NewBuffer(reinterpret_cast<char *>(&w), sizeof(w)).ToLocalChecked());
+  Nan::Set(target, Nan::New<v8::String>("s").ToLocalChecked(), Nan::NewBuffer(reinterpret_cast<char *>(&s), sizeof(s)).ToLocalChecked());
+  Nan::Set(target, Nan::New<v8::String>("str").ToLocalChecked(), Nan::NewBuffer(reinterpret_cast<char *>(&str), sizeof(str)).ToLocalChecked());
 }
 
 } // anonymous namespace
