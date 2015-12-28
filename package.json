@@ -1,6 +1,6 @@
 {
   "name": "ref-wchar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A ref \"type\" implementation of `wchar_t *` (a.k.a. wide string) backed by \"node-iconv\"",
   "main": "index.js",
   "scripts": {

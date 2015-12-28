@@ -1,4 +1,13 @@
 
+1.0.1 / 2015-12-27
+==================
+
+  * package: update "ref" to v1.3.1
+  * update for nan v2 / node.js v4
+  * test: moar tests
+  * test: test node v5
+  * README: use SVG for appveyor badge
+
 1.0.0 / 2015-03-24
 ==================
 
