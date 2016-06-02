@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/TooTallNate/ref-wchar",
   "dependencies": {
-    "iconv": "~2.1.10",
+    "iconv": "2",
     "ref": "^1.3.1"
   },
   "devDependencies": {
