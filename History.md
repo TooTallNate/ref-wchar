@@ -1,4 +1,11 @@
 
+1.0.2 / 2016-06-07
+==================
+
+  * Update travis.yml to use node version 6 (#6, @cookiengineer)
+  * Update appveyor.xml to use node 6 as build target (#5, @cookiengineer)
+  * package: update `iconv` dependency to use only major version 2 (#4, @cookiengineer)
+
 1.0.1 / 2015-12-27
 ==================
 
